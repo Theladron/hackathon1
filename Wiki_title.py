@@ -32,10 +32,8 @@ def get_section_text(article, word_lst):
 # Funktion checkt die User Eingabe
 def check_user_answer(answer_user, word_lst):
 
-    if answer_user.lower() in word_lst[0]:
-        return True
-    else:
-        return False
+    return (answer_user.lower() in word_lst[0])
+
 
 
 # Funktion zum speichern der Article in Liste
@@ -60,9 +58,13 @@ def game(players):
     print("\n📝 Task: Guess the title of the article!")
     print("The title is replaced by '_' in the text, you have to guess it.\n")
     print()
-
+    last_game = []
     for player in players:
-        article = data_handling.get_pagename()
+        while True:
+            article = data_handling.get_pagename()
+            if article not in last_game:
+                last_game.append(article)
+                break
         word_lst = check_title_in_article(article)
         section_text = get_section_text(article, word_lst)
 
@@ -76,7 +78,7 @@ def game(players):
         # Eingabe prüfen
         if check_user_answer(answer, word_lst):
             print(f"\n🎉 Correct! The title was: {article}")
-            players[player] += 1
+            players[player] += 3
         else:
             print(f"❌ Unfortunately wrong. The correct title was: {article}")
 

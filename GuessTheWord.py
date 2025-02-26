@@ -17,7 +17,7 @@ def create_wordlist(cleaned_text):
     return words
 
 def word_count(word_list):
-    stopwords = {"and", "or", "a", "the", "of", "in", "to","for", "on","with","at","by","an","is","it","as","that","was","are"}
+    stopwords = {"and","or","a","the","of","in","to","for","on","with","at","by","an","is","it","as","that","was","are","have","its","their","you","===","from"}
     filtered_words = [word for word in word_list if word and word not in stopwords]
     word_dict = {}
     for word in filtered_words:
@@ -38,8 +38,13 @@ def create_toplist(sorted_words):
  
 
 def play_game(player_dict):
+    last_game = []
     for player in player_dict:
-        data, pagename = data_handling.get_complete_page()  # Hole den Text
+        while True:
+            data, pagename = data_handling.get_complete_page()  # Hole den Text
+            if pagename not in last_game:
+                last_game.append(pagename)
+                break
         pagename = pagename.replace("_", " ")
         cleaned_text = remove_symbols(data)  # Entferne Symbole
         word_list = create_wordlist(cleaned_text)  # Erstelle eine Wortliste
@@ -57,7 +62,7 @@ def play_game(player_dict):
             guess = input(f"🎮 {player}, your Word: ").replace(" ","").lower()
         
             if guess in top_words_list:
-                print(f"\n🎉 Correct! You beecome +1 Point",  end="    ")
+                print(f"\n🎉 Correct! You get +1 Point",  end="    ")
                 score += 1
                 top_words_list.remove(guess)
             else:

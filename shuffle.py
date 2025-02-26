@@ -82,9 +82,9 @@ def insert_character_into_template(original_list, template_list, char):
 
 
 def praise_winner(player):
-     winner = "and the winner is"
-     praise="Praise him and his heirs of the next 5 generations!"
-     colored_text.print_yellow(f"{' ' * int((60-len(winner))/2)}{winner}{' ' * int((60-len(winner))/2)}")
+     wintext = "and the winner is"
+     praise = "Praise him and his heirs of the next 5 generations!"
+     colored_text.print_yellow(f"{' ' * int((60-len(wintext))/2)}{wintext}{' ' * int((60-len(wintext))/2)}")
      colored_text.print_yellow(f"{'*' * 60}")
      colored_text.print_yellow_bold(f"*{' ' * int((58-len(player))/2)}{player}{' ' * int((58-len(player))/2)}*")
      colored_text.print_yellow(f"{'*' * 60}")
@@ -104,8 +104,8 @@ def create_shuffled_title(text):
 
 
 def ask_for_solution(player, original):
-    solution = input(f"{player}: Enter the complete title for points, glory and celebrations!")
-    print(f"from solution poll: {solution, original}")
+    solution = input(f"{player}: Enter the complete title for points, glory and celebrations! ")
+    #print(f"from solution poll: {solution, original}")
     if solution.lower() == original.lower():
         return player
         
@@ -158,7 +158,7 @@ def print_display(template, hint, shuffled):
 def get_players_choice(player):
     while True:
         print_display(template, hint, shuffled)
-        players_choice = input(f"Player {player}: Enter your choice: {GREEN}{BOLD}s{ENDC}olve or {GREEN}{BOLD}b{ENDC}uy?")
+        players_choice = input(f"Player {player}: Enter your choice: {GREEN}{BOLD}s{ENDC}olve or {GREEN}{BOLD}b{ENDC}uy? ")
         if players_choice.lower() in ['s', 'solve']:
             return "solve"
         elif players_choice.lower() in ['b', 'buy']:
@@ -178,7 +178,7 @@ def main(players):
     print("================================================")
     print("======= 🏆 Welcome to the Shuffle Game! 🏆 ======")
     print("================================================")
-    print(f"\n📝 Task: Buy or Solve characters to geht the Word!")
+    print(f"\n📝 Task: Solve or buy characters to geht the Word!")
     win_condition = False
     original_list, template_list, hint, shuffled = initiate_playground()
     template = "".join(template_list)

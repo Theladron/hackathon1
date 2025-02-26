@@ -34,7 +34,7 @@ def play_game(players):
     for player in sort_dict:
         print()
         print(f"🏆 {player} has won the game! 🏆")
-        players[player] += 1
+        players[player] += 3
         break
     print()
     print(f"The actual length of the Wikipedia article '{sitename}' was: {num_words} words.")
